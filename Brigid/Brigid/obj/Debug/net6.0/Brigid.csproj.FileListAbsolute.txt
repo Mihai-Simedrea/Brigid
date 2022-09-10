@@ -31,3 +31,8 @@ D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Application.pdb
 D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Infrastructure.pdb
 D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Domain.pdb
 D:\Brigid\Brigid\Brigid\obj\Debug\net6.0\Brigid.csproj.CopyComplete
+D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Brigid\Brigid\Brigid\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Brigid\Brigid\Brigid\obj\Debug\net6.0\Brigid.MvcApplicationPartsAssemblyInfo.cs

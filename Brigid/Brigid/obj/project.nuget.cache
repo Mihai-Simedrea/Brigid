@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "vT34L03WvmUTDJkxnoOSqWlHfKsJhxYTrhaIlWR8QPoCaBNk0KePuHLGQEHnR6Bs+PxfE+Gw1HNXcXsBLrRv6Q==",
+  "dgSpecHash": "I3KPjXQE9dTpq0Vy+bWEfN0fsbSGZIDBV+0y/ILD4T+C8cZWJf33T8ZbT5gosakjRs9PIp44Z1cNEhKXuzj5MA==",
   "success": true,
   "projectFilePath": "D:\\Brigid\\Brigid\\Brigid\\Brigid.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Mihai\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
   "logs": []
 }
