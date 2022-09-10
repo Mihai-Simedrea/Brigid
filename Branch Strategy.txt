@@ -1,0 +1,4 @@
+Two branches: 
+
+- main: Here the code after more testing will be pushed, like a final version of the code
+- development: Code in progress
