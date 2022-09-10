@@ -1,11 +1,32 @@
+using Application.Command.Handlers;
+using Domain.Repositories;
+using Domain.Repositories.Base;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
+using Infrastructure.Repositories.Base;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AppDb");
 
 // Add services to the container.
-builder.Services.AddRazorPages();
 builder.Services.AddControllers();
+
+// builder.Services.AddDbContext<PatientContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Singleton);
+builder.Services.AddDbContext<PatientContext>(x => x.UseInMemoryDatabase("MyDatabase"));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<IPatientRepository, PatientRepository>();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(CreatePatientHandler).GetTypeInfo().Assembly);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -14,23 +35,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-else
-{
-    // Use Swagger
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-app.UseSwaggerUI(options =>
-{
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = String.Empty;
-});
-
-app.UseSwagger(options =>
-{
-    options.SerializeAsV2 = true;
-});
+app.UseSwagger(x => x.SerializeAsV2 = true);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -39,6 +45,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();

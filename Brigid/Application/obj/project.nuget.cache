@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "QSZBcfF1fbGy1S64Ph7TiMKPTQD8Gepl/y2O+Orkix5XGCZjx/In//wvf48CYbgOp4M66S4zLIpRcvvjkOtGeQ==",
+  "dgSpecHash": "NUkGgaJZ7fhqmLpjU/MLrJQ6UTK9FHzhwbSDt45GL+YFnEczkuweuQXuKTepdy+Mq67pbtl1x+6dMXZqHNmoAw==",
   "success": true,
   "projectFilePath": "D:\\Brigid\\Brigid\\Application\\Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Mihai\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\Mihai\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
