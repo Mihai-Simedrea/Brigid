@@ -1,5 +1,6 @@
 ﻿using Application.Command.Commands;
 using Application.Common.Models;
+using Application.Query.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,15 @@ namespace Brigid.Controllers
         public async Task<ActionResult<PatientDto>> Create([FromBody] CreatePatientCommand command)
         {
             var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("patient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<PatientDto>>> Get()
+        {
+            var result = await _mediator.Send(new GetAllPatientsQuery());
             return Ok(result);
         }
     }
