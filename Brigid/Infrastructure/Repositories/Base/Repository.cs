@@ -6,16 +6,16 @@ namespace Infrastructure.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly PatientContext _patientContext;
+        protected readonly DatabaseContext _patientContext;
 
-        public Repository(PatientContext patientContext)
+        public Repository(DatabaseContext patientContext)
         {
             _patientContext = patientContext;
         }
 
         public async Task<T> AddAsync(T entity)
         {
-            await _patientContext.Set<T>().AddAsync(entity);
+            _patientContext.Set<T>().Add(entity);
             await _patientContext.SaveChangesAsync();
             return entity;
         }

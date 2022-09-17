@@ -14,8 +14,7 @@ var connectionString = builder.Configuration.GetConnectionString("AppDb");
 // Add services to the container.
 builder.Services.AddControllers();
 
-// builder.Services.AddDbContext<PatientContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Singleton);
-builder.Services.AddDbContext<PatientContext>(x => x.UseInMemoryDatabase("MyDatabase"));
+builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Singleton);
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IPatientRepository, PatientRepository>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
