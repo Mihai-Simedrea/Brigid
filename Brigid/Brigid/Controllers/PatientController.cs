@@ -2,12 +2,14 @@
 using Application.Common.Models;
 using Application.Query.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Brigid.Controllers
 {
     [Route("/api/patients")]
     [ApiController]
+    [Authorize]
     public class PatientController : ControllerBase
     {
         private readonly IMediator _mediator;
