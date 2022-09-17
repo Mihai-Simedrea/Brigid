@@ -15,7 +15,7 @@ namespace Infrastructure.Repositories.Base
 
         public async Task<T> AddAsync(T entity)
         {
-            _patientContext.Set<T>().Add(entity);
+            await _patientContext.Set<T>().AddAsync(entity);
             await _patientContext.SaveChangesAsync();
             return entity;
         }
