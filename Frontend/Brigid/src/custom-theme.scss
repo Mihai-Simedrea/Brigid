@@ -99,5 +99,12 @@ $Brigid-theme: mat.define-light-theme((
 @include mat.all-component-themes($Brigid-theme);
 
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%;
+  background: rgb(0,128,200);
+  background: -moz-radial-gradient(circle, rgba(0,128,200,1) 0%, rgba(0,173,230,1) 73%, rgba(0,212,255,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(0,128,200,1) 0%, rgba(0,173,230,1) 73%, rgba(0,212,255,1) 100%);
+  background: radial-gradient(circle, rgba(0,128,200,1) 0%, rgba(0,173,230,1) 73%, rgba(0,212,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0080c8",endColorstr="#00d4ff",GradientType=1);
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

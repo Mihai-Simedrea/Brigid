@@ -1,6 +1,4 @@
 .fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
   
@@ -33,10 +31,6 @@
     border-radius: 25px;
 }
 
-.logo {
-
-}
-
 .register-text {
   font-weight: bold;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -54,4 +48,15 @@
   justify-content: center;
   color: black;
   font-size: 20px;
+}
+
+.id-card-upload {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }

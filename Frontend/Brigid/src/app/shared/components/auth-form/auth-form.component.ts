@@ -6,7 +6,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth-form',
@@ -28,7 +27,6 @@ export class AuthFormComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.setChangeValidate();
   }
 
   createForm() {
@@ -37,28 +35,10 @@ export class AuthFormComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
-      email: [
-        null,
-        [Validators.required, Validators.pattern(emailregex)],
-        this.checkInUseEmail,
-      ],
-      // password: [null, [Validators.required, this.checkPassword]],
+      email: [null, [Validators.required, Validators.pattern(emailregex)]],
       country: [null, [Validators.required]],
+      password: [null, [Validators.required, this.checkPassword]],
       validate: '',
-    });
-  }
-
-  setChangeValidate() {
-    this.formGroup.get('validate').valueChanges.subscribe((validate) => {
-      if (validate == '1') {
-        this.formGroup
-          .get('name')
-          .setValidators([Validators.required, Validators.minLength(3)]);
-        this.titleAlert = 'You need to specify at least 3 characters';
-      } else {
-        this.formGroup.get('name').setValidators(Validators.required);
-      }
-      this.formGroup.get('name').updateValueAndValidity();
     });
   }
 
@@ -72,19 +52,6 @@ export class AuthFormComponent implements OnInit {
     return !passwordCheck.test(enteredPassword) && enteredPassword
       ? { requirements: true }
       : null;
-  }
-
-  checkInUseEmail(control: any) {
-    // mimic http database access
-    let db = ['mike@gmail.com'];
-    return new Observable((observer) => {
-      setTimeout(() => {
-        let result =
-          db.indexOf(control.value) !== -1 ? { alreadyInUse: true } : null;
-        observer.next(result);
-        observer.complete();
-      }, 4000);
-    });
   }
 
   getErrorEmail() {
@@ -119,6 +86,10 @@ export class AuthFormComponent implements OnInit {
 
   onCountrySelected($event: Country): void {
     console.log($event);
+  }
+
+  uploadFile(fileInputEvent: any): void {
+    console.log(fileInputEvent.target.files[0]);
   }
 
   onSubmit(post: any): void {

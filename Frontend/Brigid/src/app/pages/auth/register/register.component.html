@@ -5,7 +5,7 @@
         <td>
           <app-auth-form></app-auth-form>
         </td>
-        <td class="td-spacing">
+        <td class="td-spacing" *ngIf="isOnMobile()">
           <img [src]="doctorsImagePath" alt="image" />
         </td>
       </tr>
