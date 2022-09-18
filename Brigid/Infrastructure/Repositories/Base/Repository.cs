@@ -13,27 +13,27 @@ namespace Infrastructure.Repositories.Base
             _patientContext = patientContext;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity, CancellationToken cancellationToken)
         {
-            await _patientContext.Set<T>().AddAsync(entity);
+            await _patientContext.Set<T>().AddAsync(entity, cancellationToken);
             await _patientContext.SaveChangesAsync();
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task DeleteAsync(T entity, CancellationToken cancellationToken)
         {
             _patientContext.Set<T>().Remove(entity);
-            await _patientContext.SaveChangesAsync();
+            await _patientContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await _patientContext.Set<T>().ToListAsync();
+            return await _patientContext.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            var result = await _patientContext.Set<T>().FindAsync(id);
+            var result = await _patientContext.Set<T>().FindAsync(id, cancellationToken);
             if (result == null)
             {
                 throw new NullReferenceException();

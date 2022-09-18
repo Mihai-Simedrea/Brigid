@@ -17,6 +17,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 var connectionString = builder.Configuration.GetConnectionString("AppDb");
+const string AllowAllCors = "AllowAll";
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -59,10 +60,21 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(AllowAllCors, builder =>
+    {
+        builder.AllowAnyHeader();
+        builder.AllowAnyMethod();
+        builder.AllowAnyOrigin();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Brigid" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Brigid", Version = "v1", Description = "Brigid App" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
@@ -106,6 +118,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseSwagger(x => x.SerializeAsV2 = true);
+
+app.UseCors(AllowAllCors);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

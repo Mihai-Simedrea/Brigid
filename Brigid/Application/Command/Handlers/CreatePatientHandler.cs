@@ -30,7 +30,7 @@ namespace Application.Command.Handlers
                 CreatedBy = "Mihai Simedrea"
             };
 
-            var newPatient = await _patientRepository.AddAsync(patient);
+            var newPatient = await _patientRepository.AddAsync(patient, cancellationToken);
             return new PatientDto()
             {
                 FirstName = newPatient.FirstName,

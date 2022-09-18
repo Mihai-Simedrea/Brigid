@@ -24,8 +24,8 @@ namespace Application.Query.Handlers
 
         public async Task<IReadOnlyList<PatientDto>> Handle(GetAllPatientsQuery request, CancellationToken cancellationToken)
         {
-            var query = _patientRepository.GetAllAsync();
-            return await _mapper.Map<Task<IReadOnlyList<PatientDto>>>(query);
+            var query = await _patientRepository.GetAllAsync(cancellationToken);
+            return _mapper.Map<IReadOnlyList<PatientDto>>(query);
 
         }
     }
