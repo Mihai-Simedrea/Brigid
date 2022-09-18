@@ -12,10 +12,7 @@ namespace Infrastructure.Data.Auth
             optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=AppDb;Integrated Security=True");
         }
 
-        public IdentityContext()
-        {
-
-        }
+        public IdentityContext() { }
 
         public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 
