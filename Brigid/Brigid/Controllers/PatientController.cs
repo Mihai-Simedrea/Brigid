@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Brigid.Controllers
 {
-    [Route("/api/patients")]
+    [Route("/api/[controller]")]
     [ApiController]
     [Authorize]
     public class PatientController : ControllerBase

@@ -9,7 +9,6 @@ namespace Application.Profiles
         public PatientProfile()
         {
             CreateMap<Patient, PatientDto>();
-            CreateMap<IReadOnlyList<Patient>, IReadOnlyList<PatientDto>>();
         }
     }
 }

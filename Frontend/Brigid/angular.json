@@ -78,7 +78,11 @@
               "browserTarget": "Brigid:build:production"
             },
             "development": {
-              "browserTarget": "Brigid:build:development"
+              "browserTarget": "Brigid:build:development",
+              "proxyConfig": "src/proxy.conf.json"
+            },
+            "options": {
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
