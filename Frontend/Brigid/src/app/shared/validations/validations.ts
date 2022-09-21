@@ -13,9 +13,9 @@ class Errors {
 
   getErrorPassword(formGroup: FormGroup) {
     return formGroup.get('password').hasError('required')
-      ? 'Field is required (at least eight characters, one uppercase letter and one number)'
+      ? 'Field is required (at least eight characters, at least one uppercase letter, one lowercase letter, one number and at least one special character)'
       : formGroup.get('password').hasError('requirements')
-      ? 'Password needs to be at least eight characters, one uppercase letter and one number'
+      ? 'Password needs to be at least eight characters, at least one uppercase letter, one lowercase letter, one number and at least one special character'
       : '';
   }
 

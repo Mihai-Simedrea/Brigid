@@ -108,3 +108,8 @@ html, body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0080c8",endColorstr="#00d4ff",GradientType=1);
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-simple-snackbar span {
+  margin: auto;
+  text-align: center;
+}
