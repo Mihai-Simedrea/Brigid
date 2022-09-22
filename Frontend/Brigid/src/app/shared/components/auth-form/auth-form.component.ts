@@ -74,29 +74,31 @@ export class AuthFormComponent implements OnInit, OnDestroy {
   onSubmit(post: any): void {
     this.post = post;
 
-    // this won't be needed anymore
     const formData = {
-      username: this.post.username,
-      email: this.post.email,
-      password: this.post.password,
-    } as RegisterModel;
+      ...this.post,
+      countryNumericCode: this.post.country.numericCode,
+    };
+    delete formData.country;
+    const requestModel = formData as RegisterModel;
 
-    // this will be the new data that will be sent to BE
-    const data = { ...this.post, country: this.post.country.alpha3Code };
-
-    if (formData !== null) {
-      this.authSubscription = this._auth.registerDoctor(formData).subscribe({
-        next: () => {
-          this._router.navigate([RouteList.login]);
-          this._snackbarService.open(
-            this.successMessage,
-            this.durationInSeconds
-          );
-        },
-        error: () => {
-          this._snackbarService.open(this.failMessage, this.durationInSeconds);
-        },
-      });
+    if (requestModel !== null) {
+      this.authSubscription = this._auth
+        .registerDoctor(requestModel)
+        .subscribe({
+          next: () => {
+            this._router.navigate([RouteList.login]);
+            this._snackbarService.open(
+              this.successMessage,
+              this.durationInSeconds
+            );
+          },
+          error: () => {
+            this._snackbarService.open(
+              this.failMessage,
+              this.durationInSeconds
+            );
+          },
+        });
     }
   }
 

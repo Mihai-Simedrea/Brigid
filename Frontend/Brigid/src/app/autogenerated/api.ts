@@ -482,8 +482,11 @@ export interface IPatientDto {
 }
 
 export class RegisterModel implements IRegisterModel {
+    firstName!: string;
+    lastName!: string;
     username!: string;
     email!: string;
+    countryNumericCode!: number;
     password!: string;
 
     constructor(data?: IRegisterModel) {
@@ -497,8 +500,11 @@ export class RegisterModel implements IRegisterModel {
 
     init(_data?: any) {
         if (_data) {
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
             this.username = _data["username"];
             this.email = _data["email"];
+            this.countryNumericCode = _data["countryNumericCode"];
             this.password = _data["password"];
         }
     }
@@ -512,16 +518,22 @@ export class RegisterModel implements IRegisterModel {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
         data["username"] = this.username;
         data["email"] = this.email;
+        data["countryNumericCode"] = this.countryNumericCode;
         data["password"] = this.password;
         return data;
     }
 }
 
 export interface IRegisterModel {
+    firstName: string;
+    lastName: string;
     username: string;
     email: string;
+    countryNumericCode: number;
     password: string;
 }
 

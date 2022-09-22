@@ -68,9 +68,12 @@ namespace Brigid.Controllers
 
             ApplicationUser user = new()
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                CountryNumericCode = model.CountryNumericCode
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -97,9 +100,12 @@ namespace Brigid.Controllers
 
             ApplicationUser user = new()
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                CountryNumericCode = model.CountryNumericCode
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -126,9 +132,12 @@ namespace Brigid.Controllers
 
             ApplicationUser user = new()
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                CountryNumericCode = model.CountryNumericCode
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
