@@ -19,6 +19,14 @@ class Errors {
       : '';
   }
 
+  getErrorConfirmPassword(formGroup: FormGroup) {
+    return formGroup.get('confirmPassword').hasError('required')
+      ? 'Field is required (your password must match)'
+      : formGroup.get('confirmPassword').hasError('match')
+      ? 'Your password must match'
+      : '';
+  }
+
   getFirstNameError(formGroup: FormGroup): string {
     return formGroup.get('firstName').hasError('required')
       ? 'First Name is required'

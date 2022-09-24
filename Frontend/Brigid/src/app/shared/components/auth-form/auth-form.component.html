@@ -2,86 +2,128 @@
   <div class="logo"><img src="{{ logoPath }}" /></div>
   <h1 class="register-text">REGISTER</h1>
   <h1 class="normal-text">{{ this.subTitle }}</h1>
-  <div class="container" novalidate>
-    <form
-      [formGroup]="formGroup"
-      (ngSubmit)="onSubmit(formGroup.value)"
-      class="form"
-    >
-      <mat-form-field class="form-element">
-        <input matInput placeholder="First Name" formControlName="firstName" />
-        <mat-error
-          *ngIf="
-            !formGroup.controls['firstName'].valid &&
-            formGroup.controls['firstName'].touched
-          "
-        >
-          {{ validationErrors.getFirstNameError(formGroup) }}
-        </mat-error>
-      </mat-form-field>
+  <mat-stepper #stepper class="mat-stepper-design">
+    <mat-step label="Who are you?">
+      <form [formGroup]="formGroup" class="form">
+        <mat-form-field class="form-element">
+          <input
+            matInput
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['firstName'].valid &&
+              formGroup.controls['firstName'].touched
+            "
+          >
+            {{ validationErrors.getFirstNameError(formGroup) }}
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="form-element">
-        <input matInput placeholder="Last Name" formControlName="lastName" />
-        <mat-error
-          *ngIf="
-            !formGroup.controls['lastName'].valid &&
-            formGroup.controls['lastName'].touched
-          "
-        >
-          {{ validationErrors.getLastNameError(formGroup) }}
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Last Name" formControlName="lastName" />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['lastName'].valid &&
+              formGroup.controls['lastName'].touched
+            "
+          >
+            {{ validationErrors.getLastNameError(formGroup) }}
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="form-element">
-        <input matInput placeholder="Username" formControlName="username" />
-        <mat-error
-          *ngIf="
-            !formGroup.controls['username'].valid &&
-            formGroup.controls['username'].touched
-          "
-        >
-          {{ validationErrors.getUsernameError(formGroup) }}
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Username" formControlName="username" />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['username'].valid &&
+              formGroup.controls['username'].touched
+            "
+          >
+            {{ validationErrors.getUsernameError(formGroup) }}
+          </mat-error>
+        </mat-form-field>
+        <!-- <div class="form-element">
+          <button
+            mat-raised-button
+            color="primary"
+            class="button"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div> -->
+      </form>
+    </mat-step>
+    <mat-step label="About you">
+      <form [formGroup]="formGroup" class="form">
+        <mat-form-field class="form-element">
+          <mat-hint>{{ this.emailHintMessage }}</mat-hint>
+          <input matInput placeholder="Email" formControlName="email" />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['email'].valid &&
+              formGroup.controls['email'].touched
+            "
+          >
+            {{ validationErrors.getErrorEmail(formGroup) }}
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="email-element">
-        <mat-hint>{{ this.emailHintMessage }}</mat-hint>
-        <input matInput placeholder="Email" formControlName="email" />
-        <mat-error
-          *ngIf="
-            !formGroup.controls['email'].valid &&
-            formGroup.controls['email'].touched
-          "
-        >
-          {{ validationErrors.getErrorEmail(formGroup) }}
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field class="form-element">
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['password'].valid &&
+              formGroup.controls['password'].touched
+            "
+          >
+            {{ validationErrors.getErrorPassword(formGroup) }}
+          </mat-error>
+        </mat-form-field>
 
-      <mat-select-country
-        class="country-element"
-        label="Country"
-        formControlName="country"
+        <mat-form-field class="form-element">
+          <input
+            matInput
+            type="password"
+            placeholder="Confirm password"
+            formControlName="confirmPassword"
+          />
+          <mat-error
+            *ngIf="
+              !formGroup.controls['confirmPassword'].valid &&
+              formGroup.controls['confirmPassword'].touched
+            "
+          >
+            {{ validationErrors.getErrorConfirmPassword(formGroup) }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-select-country
+          class="form-element"
+          label="Country"
+          formControlName="country"
+        >
+        </mat-select-country>
+
+        <!-- <button mat-raised-button color="primary" class="button" matStepperNext>
+          Next
+        </button> -->
+      </form>
+    </mat-step>
+    <mat-step label="One last step">
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="onSubmit(formGroup.value)"
+        class="form"
       >
-      </mat-select-country>
-
-      <mat-form-field class="form-element">
-        <input
-          matInput
-          type="password"
-          placeholder="Password"
-          formControlName="password"
-        />
-        <mat-error
-          *ngIf="
-            !formGroup.controls['password'].valid &&
-            formGroup.controls['password'].touched
-          "
-        >
-          {{ validationErrors.getErrorPassword(formGroup) }}
-        </mat-error>
-      </mat-form-field>
-
-      <div class="form-element">
+        <p>Here will be the fingerprint auth</p>
         <button
           mat-raised-button
           color="primary"
@@ -91,7 +133,13 @@
         >
           Submit
         </button>
-      </div>
-    </form>
+      </form>
+    </mat-step>
+  </mat-stepper>
+  <div>
+    <div class="bottom-text">
+      <p>Already have an account?</p>
+      <a class="link-text">Login</a>
+    </div>
   </div>
 </div>

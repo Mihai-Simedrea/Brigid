@@ -21,6 +21,9 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
 })
 export class AuthFormComponent implements OnInit, OnDestroy {
   logoPath: string = '../../../assets/images/logo.svg';
+  moleculePath: string = '../../../../assets/images/auth/molecule.png';
+  adnPath: string = '../../../../assets/images/auth/adn.png';
+
   subTitle: string = 'Begin your Journey';
   titleAlert: string = 'This field is required';
   successMessage: string = 'Your account was created successfully!';
@@ -47,21 +50,27 @@ export class AuthFormComponent implements OnInit, OnDestroy {
   }
 
   createForm() {
-    this.formGroup = this._formBuilder.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      username: [null, [Validators.required]],
-      email: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern(Patterns.email),
-          Validators.email,
+    this.formGroup = this._formBuilder.group(
+      {
+        firstName: [null, [Validators.required]],
+        lastName: [null, [Validators.required]],
+        username: [null, [Validators.required]],
+        email: [
+          null,
+          [
+            Validators.required,
+            Validators.pattern(Patterns.email),
+            Validators.email,
+          ],
         ],
-      ],
-      country: [null, [Validators.required]],
-      password: [null, [Validators.required, this.checkPassword]],
-    });
+        country: [null, [Validators.required]],
+        password: [null, [Validators.required, this.checkPassword]],
+        confirmPassword: [null, [Validators.required]],
+      },
+      {
+        validators: this.checkPasswordMatch('password', 'confirmPassword'),
+      }
+    );
   }
 
   checkPassword(control: any) {
@@ -69,6 +78,17 @@ export class AuthFormComponent implements OnInit, OnDestroy {
     return !Patterns.password.test(enteredPassword) && enteredPassword
       ? { requirements: true }
       : null;
+  }
+
+  checkPasswordMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      return control.value !== matchingControl.value
+        ? matchingControl.setErrors({ match: true })
+        : matchingControl.setErrors(null);
+    };
   }
 
   onSubmit(post: any): void {

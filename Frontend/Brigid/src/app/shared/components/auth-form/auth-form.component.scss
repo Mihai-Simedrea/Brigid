@@ -60,3 +60,24 @@
   margin-top: 0;
   margin-bottom: 10px;
 }
+
+.mat-stepper-design {
+  border-radius: 25px;
+  height: 450px;
+}
+
+.bottom-text {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  bottom: 0;
+  margin-bottom: 0;
+  vertical-align: bottom;
+  font-size: 15px;
+}
+
+.link-text {
+  margin-left: 5px;
+  color: #0080C8; // change here to '$Brigid-primary'
+  font-weight: bold;
+}
