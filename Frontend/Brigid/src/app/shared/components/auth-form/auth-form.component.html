@@ -1,4 +1,7 @@
 <div class="form-container">
+  <div class="adn-container">
+    <img src="{{ adnPath }}" class="adn" />
+  </div>
   <div class="logo"><img src="{{ logoPath }}" /></div>
   <h1 class="register-text">REGISTER</h1>
   <h1 class="normal-text">{{ this.subTitle }}</h1>
@@ -136,10 +139,12 @@
       </form>
     </mat-step>
   </mat-stepper>
-  <div>
+
+  <div class="molecule-container">
+    <img src="{{ moleculePath }}" class="molecule" />
     <div class="bottom-text">
       <p>Already have an account?</p>
-      <a class="link-text">Login</a>
+      <a class="link-text" routerLink="/login">Login</a>
     </div>
   </div>
 </div>

@@ -109,6 +109,10 @@ html, body {
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+a {
+  text-decoration: none;
+}
+
 .mat-simple-snackbar span {
   margin: auto;
   text-align: center;

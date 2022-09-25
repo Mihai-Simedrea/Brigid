@@ -19,7 +19,7 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
   styleUrls: ['./auth-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthFormComponent implements OnInit, OnDestroy {
+export class AuthFormComponent implements OnInit {
   logoPath: string = '../../../assets/images/logo.svg';
   moleculePath: string = '../../../../assets/images/auth/molecule.png';
   adnPath: string = '../../../../assets/images/auth/adn.png';
@@ -120,9 +120,5 @@ export class AuthFormComponent implements OnInit, OnDestroy {
           },
         });
     }
-  }
-
-  ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
   }
 }
