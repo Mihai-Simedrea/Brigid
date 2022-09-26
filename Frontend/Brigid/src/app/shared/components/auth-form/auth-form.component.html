@@ -3,9 +3,19 @@
     <img src="{{ adnPath }}" class="adn" />
   </div>
   <div class="logo"><img src="{{ logoPath }}" /></div>
-  <h1 class="register-text">REGISTER</h1>
-  <h1 class="normal-text">{{ this.subTitle }}</h1>
-  <mat-stepper #stepper class="mat-stepper-design">
+  <h1 class="register-text" *ngIf="authType; else login">REGISTER</h1>
+  <ng-template #login><h1 class="register-text">LOGIN</h1></ng-template>
+  <h1 class="normal-text" *ngIf="authType; else loginSubtitle">
+    {{ this.subTitle }}
+  </h1>
+  <ng-template #loginSubtitle>
+    <h1 class="normal-text">{{ this.loginSubTitle }}</h1></ng-template
+  >
+  <mat-stepper
+    #stepper
+    class="mat-stepper-design"
+    *ngIf="authType; else loginForm"
+  >
     <mat-step label="Who are you?">
       <form [formGroup]="formGroup" class="form">
         <mat-form-field class="form-element">
@@ -47,16 +57,6 @@
             {{ validationErrors.getUsernameError(formGroup) }}
           </mat-error>
         </mat-form-field>
-        <!-- <div class="form-element">
-          <button
-            mat-raised-button
-            color="primary"
-            class="button"
-            matStepperNext
-          >
-            Next
-          </button>
-        </div> -->
       </form>
     </mat-step>
     <mat-step label="About you">
@@ -114,10 +114,6 @@
           formControlName="country"
         >
         </mat-select-country>
-
-        <!-- <button mat-raised-button color="primary" class="button" matStepperNext>
-          Next
-        </button> -->
       </form>
     </mat-step>
     <mat-step label="One last step">
@@ -140,11 +136,91 @@
     </mat-step>
   </mat-stepper>
 
-  <div class="molecule-container">
+  <!-- Login -->
+  <ng-template #loginForm>
+    <mat-stepper #stepper class="mat-stepper-design">
+      <mat-step label="Your credentials">
+        <form [formGroup]="formGroup" class="form">
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Username" formControlName="username" />
+            <mat-error
+              *ngIf="
+                !formGroup.controls['username'].valid &&
+                formGroup.controls['username'].touched
+              "
+            >
+              {{ validationErrors.getUsernameError(formGroup) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <mat-hint>{{ this.emailHintMessage }}</mat-hint>
+            <input matInput placeholder="Email" formControlName="email" />
+            <mat-error
+              *ngIf="
+                !formGroup.controls['email'].valid &&
+                formGroup.controls['email'].touched
+              "
+            >
+              {{ validationErrors.getErrorEmail(formGroup) }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="
+                !formGroup.controls['password'].valid &&
+                formGroup.controls['password'].touched
+              "
+            >
+              {{ validationErrors.getErrorPassword(formGroup) }}
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </mat-step>
+      <mat-step label="Biometrics">
+        <form
+          [formGroup]="formGroup"
+          (ngSubmit)="onLogin(formGroup.value)"
+          class="form"
+        >
+          <p>Here will be the fingerprint validation</p>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="button"
+            [disabled]="!formGroup.valid"
+          >
+            Login
+          </button>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </ng-template>
+
+  <!-- Form Footer -->
+  <div class="molecule-container" *ngIf="authType; else loginFooter">
     <img src="{{ moleculePath }}" class="molecule" />
     <div class="bottom-text">
       <p>Already have an account?</p>
       <a class="link-text" routerLink="/login">Login</a>
     </div>
   </div>
+
+  <ng-template #loginFooter>
+    <div class="molecule-container">
+      <img src="{{ moleculePath }}" class="molecule" />
+      <div class="bottom-text">
+        <p>Don't you have an account yet?</p>
+        <a class="link-text" routerLink="/register">Register</a>
+      </div>
+    </div>
+  </ng-template>
 </div>
